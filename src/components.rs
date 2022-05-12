@@ -1,4 +1,4 @@
-use yew::{function_component, html::ImplicitClone, Properties};
+use yew::{function_component, Properties};
 use yew::html;
 
 pub mod about_me;
@@ -8,28 +8,23 @@ pub mod header;
 pub mod projects;
 pub mod timeline;
 
-#[derive(Clone, PartialEq)]
-pub struct A {
-    name: String,
-    href: String,
-}
-
-impl A {
-    pub fn new(name: &str, href: &str) -> Self {
-	A { name: name.into(), href: href.into() }
-    }
-}
-
-impl ImplicitClone for A {}
+pub type Uri = String;
 
 #[derive(Properties, PartialEq)]
 pub struct LinkProps {
-    a: A,
+    name: String,
+    href: Uri,
+}
+
+impl LinkProps {
+    pub fn new(name: &str, href: &str) -> Self {
+	Self { name: name.into(), href: href.into() }
+    }
 }
 
 #[function_component(Link)]
-pub fn link(LinkProps { a }: &LinkProps) -> Html {
+pub fn link(LinkProps { name, href }: &LinkProps) -> Html {
     html! {
-        <a href={ a.href.clone() }>{ a.name.clone() }</a>
+      <a href={ href.clone() }>{ name.clone() }</a>
     }
 }

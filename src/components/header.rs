@@ -1,16 +1,16 @@
 use yew::{html, Properties, function_component, Html};
 
-use super::{Link, A};
+use super::{Link, LinkProps};
 
 #[derive(Properties, PartialEq)]
 pub struct HeaderProps {
-    pub links: Vec<A>,
+    pub links: Vec<LinkProps>,
 }
 
 #[function_component(Header)]
 pub fn header(HeaderProps { links }: &HeaderProps) -> Html {
-    let links: Html = links.iter().map(|a| html! {
-	<li><Link {a} /></li>
+    let links: Html = links.iter().map(|l| html! {
+	<li><Link name={l.name.clone()} href={l.href.clone()} /></li>
     }).collect();
     html! {
         <header>
