@@ -1,9 +1,11 @@
 mod components;
 
+use chrono::NaiveDate;
 use components::{
     about_me::AboutMe,
     footer::Footer,
     header::Header,
+    timeline::{Event, Timeline},
     projects::{Project, Projects},
     LinkProps,
 };
@@ -11,11 +13,14 @@ use yew::prelude::*;
 
 #[function_component(App)]
 pub fn app() -> Html {
+    // header
     let header_links = vec![
         LinkProps::new("About Me", "#"),
         LinkProps::new("Projects", "#"),
         LinkProps::new("Contact", "#"),
     ];
+
+    // projects
     let projects = vec![Project::new(
         "Quote-Reminder",
         // TODO: maybe I should move this out into a separate file and read the
@@ -39,12 +44,25 @@ pub fn app() -> Html {
         "",
         "https://github.com/yves-biener/quote-reminder/",
     )];
+
+    // about me
     let about_me_content = r"Welcome, I'm Yves! I strive to become a
     rusteriant, learn and improve at every opportunity I get. This website is
     still work in progress. You will pretty much only read this when you are
     skimming through the history of this repository over on github. So let me ask
     you: What are you doing reading this?";
     let about_me_image_src = "";
+
+    // timeline
+    let events = vec![Event::new(
+	"Bachelors Degree",
+	r"Discription on what I did in my bachelors degree, what my bachelors theses was about, etc.",
+	"",
+	NaiveDate::from_ymd(2017, 10, 1),
+	NaiveDate::from_ymd(2022, 4, 1),
+    )];
+
+    // footer
     let linked_in = LinkProps::new(
         "Linked In",
         "https://www.linkedin.com/in/yves-biener-3568a2225/",
@@ -58,6 +76,7 @@ pub fn app() -> Html {
       <>
         <Header links={ header_links } />
         <AboutMe content={ about_me_content } image_src={ about_me_image_src } />
+	<Timeline {events} />
         <Projects {projects} />
         <Footer linked_in={linked_in} github={github} mail_to={mail_to} />
       </>
