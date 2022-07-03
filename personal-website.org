@@ -1,0 +1,15 @@
+#+title: Hi, my name is Yves
+#+subtitle: Personal Website of Yves Biener
+#+description: This is my personal website functioning as an online CV and showcase some of my projects.
+#+author: Yves Biener
+#+email: yves.biener@gmx.de
+#+language: en
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="personal-website.css" />
+#+OPTIONS: toc:2 html-scripts:nil num:nil html-postamble:nil html-style:nil ^:nil
+
+* About Me
+Hello my name is Yves Biener. I am an Software Engineer focusing on Dev Ops
+Engineering.
+* Timeline
+* Projects
+SYC (Save Your Code): My own centralized version control system written in rust.
